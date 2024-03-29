@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import mx.com.superheros.marvels.R
 import mx.com.superheros.marvels.databinding.CharacterItemBinding
 import mx.com.superheros.marvels.data.model.Result
@@ -43,7 +45,7 @@ class CharacterAdapter : ListAdapter<Result, CharacterAdapter.CharacterViewHolde
                     override fun onLoadFailed(
                         e: GlideException?,
                         model: Any?,
-                        target: com.bumptech.glide.request.target.Target<Drawable>?,
+                        target: Target<Drawable>,
                         isFirstResource: Boolean
                     ): Boolean {
                         e?.logRootCauses("TAG")
@@ -51,10 +53,10 @@ class CharacterAdapter : ListAdapter<Result, CharacterAdapter.CharacterViewHolde
                     }
 
                     override fun onResourceReady(
-                        resource: Drawable?,
-                        model: Any?,
-                        target: com.bumptech.glide.request.target.Target<Drawable>?,
-                        dataSource: com.bumptech.glide.load.DataSource?,
+                        resource: Drawable,
+                        model: Any,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource,
                         isFirstResource: Boolean
                     ): Boolean {
                         return false

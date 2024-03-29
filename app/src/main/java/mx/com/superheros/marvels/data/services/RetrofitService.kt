@@ -1,4 +1,4 @@
-package mx.com.superheros.marvels.data
+package mx.com.superheros.marvels.data.services
 
 import mx.com.superheros.marvels.data.model.RemoteResult
 import retrofit2.Retrofit

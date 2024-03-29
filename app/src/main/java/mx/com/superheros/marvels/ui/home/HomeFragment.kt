@@ -4,15 +4,19 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import mx.com.superheros.marvels.R
 import mx.com.superheros.marvels.databinding.FragmentHomeBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: HomeViewModel by viewModels()
+
+    // Usar el viewModel de Koin
+    private val viewModel: HomeViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,8 +31,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             adapter.submitList(characters)
         })
 
+        // Llama a fetchCharacters() para obtener los personajes cuando se crea la vista
         viewModel.fetchCharacters()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

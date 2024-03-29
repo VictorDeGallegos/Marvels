@@ -14,7 +14,8 @@ navigationFragmentKtx = "2.7.7"
 navigationUiKtx = "2.7.7"
 retrofit = "2.9.0"
 gsonConverter = "2.9.0"
-glide = "4.12.0"
+glide = "4.16.0"
+koin = "3.4.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +32,7 @@ androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 gsonConverter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gsonConverter" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+koin = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
