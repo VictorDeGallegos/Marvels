@@ -4,4 +4,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="character_image">characterImage</string>
+    <string name="Characters">Characters</string>
+    <string name="Marvel">Marvel</string>
 </resources>

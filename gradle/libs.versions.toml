@@ -16,6 +16,7 @@ retrofit = "2.9.0"
 gsonConverter = "2.9.0"
 glide = "4.16.0"
 koin = "3.4.3"
+groupie = "2.10.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,6 +34,10 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 gsonConverter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gsonConverter" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 koin = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+groupie = { group = "com.github.lisawray.groupie", name = "groupie", version.ref = "groupie" }
+groupieViewBinding = { group = "com.github.lisawray.groupie", name = "groupie-viewbinding", version.ref = "groupie" }
+glideTransformations = { group = "jp.wasabeef", name = "glide-transformations", version = "4.3.0" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
