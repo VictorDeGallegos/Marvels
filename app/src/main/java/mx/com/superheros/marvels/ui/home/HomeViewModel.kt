@@ -1,11 +1,13 @@
 package mx.com.superheros.marvels.ui.home
 
+import MarvelApiConfig
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import mx.com.superheros.marvels.data.repository.CharacterRepository
 import mx.com.superheros.marvels.data.model.Result
+import mx.com.superheros.marvels.util.Constants.IMAGE_NOT_FOUND_URL
 
 class HomeViewModel(private val repository: CharacterRepository) : ViewModel() {
     val characters = MutableLiveData<List<Result>>()
@@ -14,10 +16,13 @@ class HomeViewModel(private val repository: CharacterRepository) : ViewModel() {
         val ts = MarvelApiConfig.TS
         val publicKey = MarvelApiConfig.PUBLIC_KEY
         val hash = MarvelApiConfig.getHash()
+        val nameStartsWith = MarvelApiConfig.NAME_STARTS_WITH
+        val orderBy = MarvelApiConfig.ORDER_BY
 
         viewModelScope.launch {
-            val response = repository.getCharacters(ts, publicKey, hash)
-            characters.value = response.data.results
+            val response = repository.getCharacters(ts, publicKey, hash, nameStartsWith, orderBy)
+            val filteredCharacters = response.data.results.filter { it.thumbnail.path != IMAGE_NOT_FOUND_URL }
+            characters.value = filteredCharacters
         }
     }
 }

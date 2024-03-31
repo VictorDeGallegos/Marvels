@@ -13,21 +13,21 @@ import mx.com.superheros.marvels.util.Constants.IMAGE_NOT_FOUND_URL
 class CharacterItem(private val character: Result) : BindableItem<CharacterItemBinding>() {
 
     override fun bind(viewBinding: CharacterItemBinding, position: Int) {
-        viewBinding.characterName.text = character.name
+        if (character.thumbnail.path != IMAGE_NOT_FOUND_URL) {
+            viewBinding.root.visibility = View.VISIBLE
 
-        // Verifica si thumbnail.path es igual a la URL de la imagen no disponible
-        if (character.thumbnail.path == IMAGE_NOT_FOUND_URL) {
-            // Carga una imagen de "no disponible" en tu ImageView
-            Glide.with(viewBinding.root.context)
-                .load(R.drawable.image_not_found_icon)// Usa un recurso de Android predeterminado
-                .apply(RequestOptions.bitmapTransform(RoundedCorners(20))) // Añade esta línea
-                .into(viewBinding.characterImage)
-        } else {
+            // Reemplaza el primer paréntesis por un salto de línea
+            val nameWithNewLine = character.name.replaceFirst("(", "\n(")
+            viewBinding.characterName.text = nameWithNewLine
+            viewBinding.characterName.textAlignment = View.TEXT_ALIGNMENT_CENTER
+
             // Usa Glide para cargar la imagen del personaje en tu ImageView
             Glide.with(viewBinding.root.context)
                 .load(character.thumbnail.path + "." + character.thumbnail.extension)
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(20))) // Añade esta línea
                 .into(viewBinding.characterImage)
+        } else {
+            viewBinding.root.visibility = View.GONE
         }
     }
 
