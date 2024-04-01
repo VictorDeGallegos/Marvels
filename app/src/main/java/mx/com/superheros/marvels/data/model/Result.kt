@@ -11,5 +11,6 @@ data class Result(
     val series: Series,
     val stories: Stories,
     val thumbnail: Thumbnail,
-    val urls: List<Url>
+    val urls: List<Url>,
+    val title: String
 )

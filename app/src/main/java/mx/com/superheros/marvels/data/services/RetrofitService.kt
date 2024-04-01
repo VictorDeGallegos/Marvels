@@ -17,14 +17,12 @@ interface RetrofitService {
         @Query("orderBy") orderBy: String
     ): RemoteResult
 
-}
-
-object RetrofitServiceFactory {
-    fun makeRetrofitService(): RetrofitService {
-        return Retrofit.Builder()
-            .baseUrl("https://gateway.marvel.com/v1/public/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(RetrofitService::class.java)
-    }
+    @GET("series")
+    suspend fun getSeries(
+        @Query("ts") ts: String,
+        @Query("apikey") apiKey: String,
+        @Query("hash") hash: String,
+        @Query("titleStartsWith") titleStartsWith: String,
+        @Query("orderBy") orderBy: String
+    ): RemoteResult
 }

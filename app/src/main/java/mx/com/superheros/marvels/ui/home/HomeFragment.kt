@@ -3,8 +3,6 @@ package mx.com.superheros.marvels.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import mx.com.superheros.marvels.R
 import mx.com.superheros.marvels.databinding.FragmentHomeBinding
@@ -15,26 +13,33 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    // Usar el viewModel de Koin
     private val viewModel: HomeViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
 
-        val recyclerView = binding.recyclerView
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        val adapter = CharacterAdapter()
-        recyclerView.adapter = adapter
+        val characterRecyclerView = binding.recyclerView
+        characterRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val characterAdapter = CharacterAdapter()
+        characterRecyclerView.adapter = characterAdapter
 
         viewModel.characters.observe(viewLifecycleOwner, { characters ->
-            adapter.submitList(characters)
+            characterAdapter.submitList(characters)
         })
 
-        // Llama a fetchCharacters() para obtener los personajes cuando se crea la vista
-        viewModel.fetchCharacters()
-    }
+        val seriesRecyclerView = binding.seriesRecyclerView
+        seriesRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val seriesAdapter = SeriesAdapter()
+        seriesRecyclerView.adapter = seriesAdapter
 
+        viewModel.series.observe(viewLifecycleOwner, { series ->
+            seriesAdapter.submitList(series)
+        })
+
+        viewModel.fetchCharacters()
+        viewModel.fetchSeries()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
