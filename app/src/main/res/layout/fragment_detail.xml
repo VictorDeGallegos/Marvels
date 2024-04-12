@@ -76,6 +76,47 @@
                         app:layout_constraintTop_toBottomOf="@id/characterName"
                         tools:text="Character Description" />
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/characterComicsCardView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:background="#FFFFFF"
+                        app:cardCornerRadius="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/characterDescription">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#FFFFFF"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/characterComics"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                tools:text="@string/character_comics" />
+
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/characterComicsRecyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginBottom="16dp" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

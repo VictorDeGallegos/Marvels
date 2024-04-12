@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
 import mx.com.superheros.marvels.R
 import mx.com.superheros.marvels.databinding.FragmentDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,9 +22,6 @@ class DetailFragment : Fragment() {
     private val detailViewModel: DetailViewModel by viewModel { parametersOf(args.characterId) }
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
-
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +44,20 @@ class DetailFragment : Fragment() {
             } else {
                 binding.characterDescription.text = character.description
             }
+            binding.characterComics.text = getString(R.string.character_comics)
 
+            // Create a GroupAdapter and add each comic as a ComicItem
+            val comicsAdapter = GroupAdapter<GroupieViewHolder>()
+            character.comics.items.forEach { comic ->
+                comicsAdapter.add(ComicItem(comic))
+            }
+
+            // Create a LinearLayoutManager with horizontal orientation
+            val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+            // Assign the GroupAdapter and LayoutManager to the RecyclerView
+            binding.characterComicsRecyclerView.layoutManager = layoutManager
+            binding.characterComicsRecyclerView.adapter = comicsAdapter
         }
 
         return root
