@@ -12,5 +12,7 @@ data class Result(
     val stories: Stories,
     val thumbnail: Thumbnail,
     val urls: List<Url>,
-    val title: String
+    val title: String,
+    val prices: List<Price>?,
+    val isbn: String?,
 )
