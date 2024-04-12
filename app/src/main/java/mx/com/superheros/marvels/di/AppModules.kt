@@ -7,6 +7,7 @@ import mx.com.superheros.marvels.data.datasource.SeriesDataSource
 import mx.com.superheros.marvels.data.repository.CharacterRepository
 import mx.com.superheros.marvels.data.repository.SeriesRepository
 import mx.com.superheros.marvels.data.services.RetrofitService
+import mx.com.superheros.marvels.ui.detail.DetailViewModel
 import mx.com.superheros.marvels.ui.home.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -35,6 +36,7 @@ val repositoryModule = module {
 
 val viewModelModule = module {
     viewModel { HomeViewModel(get(), get()) }
+    viewModel { (characterId: String) -> DetailViewModel(get(), characterId) }
 }
 
 val appModules = listOf(networkModule, dataSourceModule, repositoryModule, viewModelModule)

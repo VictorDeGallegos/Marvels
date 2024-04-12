@@ -3,6 +3,7 @@ package mx.com.superheros.marvels.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import mx.com.superheros.marvels.R
 import mx.com.superheros.marvels.databinding.FragmentHomeBinding
@@ -21,7 +22,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         val characterRecyclerView = binding.recyclerView
         characterRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        val characterAdapter = CharacterAdapter()
+        val characterAdapter = CharacterAdapter { characterId ->
+            // Navegar a la pantalla de detalle AL hacer clic en un personaje
+            val action = HomeFragmentDirections.actionNavigationHomeToNavigationDetail(characterId)
+            findNavController().navigate(action)
+        }
         characterRecyclerView.adapter = characterAdapter
 
         viewModel.characters.observe(viewLifecycleOwner, { characters ->

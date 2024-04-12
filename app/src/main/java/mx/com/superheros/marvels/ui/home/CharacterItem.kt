@@ -10,7 +10,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import mx.com.superheros.marvels.util.Constants.IMAGE_NOT_FOUND_URL
 
-class CharacterItem(private val character: Result) : BindableItem<CharacterItemBinding>() {
+class CharacterItem(private val character: Result, private val onClick: (String) -> Unit) : BindableItem<CharacterItemBinding>() {
 
     override fun bind(viewBinding: CharacterItemBinding, position: Int) {
         if (character.thumbnail.path != IMAGE_NOT_FOUND_URL) {
@@ -26,9 +26,16 @@ class CharacterItem(private val character: Result) : BindableItem<CharacterItemB
                 .load(character.thumbnail.path + "." + character.thumbnail.extension)
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(20))) // Añade esta línea
                 .into(viewBinding.characterImage)
+
+            // Agrega un OnClickListener al elemento
+            viewBinding.root.setOnClickListener { onClick(character.id) }
         } else {
             viewBinding.root.visibility = View.GONE
         }
+    }
+
+    private fun onClick(id: Int) {
+        onClick.invoke(id.toString())
     }
 
     override fun getLayout(): Int {
