@@ -11,4 +11,12 @@ interface CharacterDataSource {
         apiKey: String,
         hash: String,
     ): RemoteResult
+
+    suspend fun getComics(
+        characterId: String,
+        ts: String,
+        apiKey: String,
+        hash: String,
+        orderBy: String,
+    ): RemoteResult
 }

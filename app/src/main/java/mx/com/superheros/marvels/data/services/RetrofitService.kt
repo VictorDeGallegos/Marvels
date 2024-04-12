@@ -27,6 +27,15 @@ interface RetrofitService {
         @Query("hash") hash: String
     ): RemoteResult
 
+    @GET("characters/{characterId}/comics")
+    suspend fun getComics(
+        @Path("characterId") characterId: String,
+        @Query("ts") ts: String,
+        @Query("apikey") apiKey: String,
+        @Query("hash") hash: String,
+        @Query("orderBy") orderBy: String
+    ): RemoteResult
+
     @GET("series")
     suspend fun getSeries(
         @Query("ts") ts: String,

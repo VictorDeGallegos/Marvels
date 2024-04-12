@@ -9,4 +9,7 @@ class CharacterRepository(private val dataSource: CharacterDataSource) {
 
     suspend fun getCharacter(characterId: String, ts: String, apiKey: String, hash: String) =
         dataSource.getCharacter(characterId, ts, apiKey, hash)
+
+    suspend fun getComics(characterId: String, ts: String, apiKey: String, hash: String, orderBy: String) =
+        dataSource.getComics(characterId, ts, apiKey, hash, orderBy)
 }

@@ -9,4 +9,7 @@ class RetrofitCharacterDataSource(private val retrofitService: RetrofitService) 
 
     override suspend fun getCharacter(characterId: String, ts: String, apiKey: String, hash: String)  =
         retrofitService.getCharacter(characterId, ts, apiKey, hash)
+
+    override suspend fun getComics(characterId: String, ts: String, apiKey: String, hash: String, orderBy: String) =
+        retrofitService.getComics(characterId, ts, apiKey, hash, orderBy)
 }
