@@ -46,7 +46,8 @@ Sigue las pautas de [arquitectura](https://developer.android.com/topic/architect
 - Google [Material Design](https://material.io/blog/android-material-theme-color) library
 
 ## Resumen + Diseño ✍🏻
-![Cover](https://github.com/VictorDeGallegos/Marvels/assets/41756950/c16c4bcb-5c6e-4fde-8d33-0d4c8a566079)
+
+![CoverMarvels](https://github.com/VictorDeGallegos/Marvels/assets/41756950/975c2426-c20d-4416-8a42-573a1780a4b4)
 
 ---
 ⌨️ con ❤️ por  [Victor Gallegos](https://github.com/VictorLiverpoolDev/VictorLiverpoolDev)
